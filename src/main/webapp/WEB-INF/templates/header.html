@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Archinterest</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" id="nav-main">
+                <a class="nav-link" href="/archinterest/arch">Main <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" id="nav-gallery">
+                <a class="nav-link" href="/archinterest/gallery">Gallery</a>
+            </li>
+            <#if (current)??>
+            <li class="nav-item" id="nav-news">
+                <a class="nav-link" href="/archinterest/news">News</a>
+            </li>
+            <li class="nav-item" id="nav-projects">
+                <a class="nav-link" href="/archinterest/projects" tabindex="-1">Projects</a>
+            </li>
+        </ul>
+        <a class="btn btn-outline-light my-2 my-sm-0" id="nav-profile" href="/archinterest/profile">Profile</a>
+        <#else>
+    </#if>
+    </div>
+</nav>

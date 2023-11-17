@@ -1,0 +1,126 @@
+<#import "base.html" as b>
+
+<@b.override "title">Preferences</@b.override>
+
+<@b.override "styles">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+<link href="styles/preferences.css" rel="stylesheet">
+</@b.override>
+
+<@b.override "assign">
+<#assign avatar = (profile.avatarPath?? && profile.avatarPath != "")?then(profile.avatarPath,
+"https://bootdey.com/img/Content/avatar/avatar7.png")>
+<#assign name = (profile.name??)?then(profile.name, "")>
+<#assign lastName = (profile.lastname??)?then(profile.lastname, "")>
+<#assign patronymic = (profile.patronymic??)?then(profile.patronymic, "")>
+<#assign about = (profile.about??)?then(profile.about, "")>
+</@b.override>
+
+<@b.override "main">
+<div class="container">
+    <div class="main-body">
+        <div class="row gutters"><div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="account-settings">
+                        <div class="user-profile">
+                            <div class="user-avatar">
+                                <img src="${avatar}" alt="Avatar">
+                            </div>
+                            <h5 class="user-name">${profile.username}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <form method="post" action="/archinterest/avatar" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png">
+                    </div>
+                    <div class="mb-3">
+                        <input class="btn btn-primary" type="submit" id="avatar" value="Change avatar">
+                    </div>
+                </form>
+            </div>
+        </div><div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <form action="/archinterest/preferences" method="post">
+                        <div class="row gutters">
+                            <input type="hidden" value="${profile.id}" name="id" id="id" }>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mb-2 text-primary">Personal Details</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName"
+                                           placeholder="${lastName}" value="${lastName}">
+                                </div>
+                                <div class="col">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           placeholder="${name}" value="${name}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="patronymic">Father Name</label>
+                                    <input type="text" class="form-control" id="patronymic" name="patronymic"
+                                           placeholder="${patronymic}" value="${patronymic}">
+                                </div>
+                                <div class="col">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                           placeholder="${profile.email}" value="${profile.email}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="about">About</label>
+                                    <textarea class="form-control" id="about" name="about"
+                                              placeholder="Text about yourself">${about}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-0">
+                                <p>Choose your tags</p>
+                                <#list allTags as tag>
+                                <div class="form-check form-check-inline mb-2">
+                                    <#assign bool = userTagNames?seq_contains(tag.title)?string("checked", "")>
+                                    <input class="form-check-input" name="tag-${tag.id}" id="tag-${tag.id}"
+                                           type="checkbox" ${bool}>
+                                    <label class="form-check-label" for="tag-${tag.id}">${tag.title}</label>
+                                </div>
+                            </#list>
+                        </div>
+                        <div class="row gutters mt-3">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="text-right">
+                                    <input type="reset" id="reset" name="submit" class="btn btn-secondary"
+                                           placeholder="Reset">
+                                    <input type="submit" id="submit" name="submit" class="btn btn-primary"
+                                           placeholder="Update">
+                                    <a class="btn btn-danger" id="back" href="/archinterest/profile">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div></div>
+    </div>
+</div>
+
+</@b.override>
+
+<@b.override "active">
+$('#nav-profile').removeClass('btn-outline-warning');
+$('#nav-profile').addClass('btn-warning');</@b.override>
+
+<@b.override "scripts">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+</@b.override>
+
+<@b.template />

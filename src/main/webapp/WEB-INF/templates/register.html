@@ -1,0 +1,38 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/auth.css">
+    <link rel="icon" href="images/logo.png">
+</head>
+<body>
+<div class="container">
+    <div class="wrapper">
+        <form action="/archinterest/reg" method="post" name="Reg_Form" class="form-signin">
+            <h3 class="form-signin-heading">Nice to meet you! Please Sign Up</h3>
+            <#if error??><h3 style="color: red" class="form-signin-heading">${error}</h3>
+            <#else></#if>
+            <hr class="colorgraph">
+            <br>
+
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" required=""
+                   autofocus=""/>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required=""
+                   autofocus=""/>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                   required=""/>
+            <input type="checkbox" id="remember_me" name="remember_me"/>
+            <label for="remember_me">Remember me?</label>
+
+            <button class="btn btn-lg btn-success btn-block" name="Submit" value="Login" type="Submit">Register</button>
+        <a class="btn btn-lg btn-secondary btn-block" href="/archinterest/arch">Not now</a>
+        <a class="btn btn-lg btn-primary btn-block" href="/archinterest/auth">Already have account</a>
+        </form>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
